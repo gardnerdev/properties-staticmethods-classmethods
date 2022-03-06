@@ -1,3 +1,10 @@
+TRUCK_DRIVERS = [
+    'Rick Falugia',
+    'David Beck',
+    'Danzel Want'
+]
+
+
 class Driver:
     
     def __init__(self,name):
@@ -11,6 +18,9 @@ class Driver:
     
     @name.setter                # @name refers to def name(self) function
     def name(self, name):
+        
+        if name not in TRUCK_DRIVERS:
+            raise ValueError(f"{name} is not a truck driver")
         self._name = name
     
 
@@ -24,3 +34,5 @@ if __name__ == "__main__":
     # after added setter
     dd.name = "Ricky Martin"
     print(dd.name)
+    
+    
