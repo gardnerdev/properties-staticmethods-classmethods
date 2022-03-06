@@ -1,3 +1,5 @@
+import random 
+
 TRUCK_DRIVERS = [
     'Rick Falugia',
     'David Beck',
@@ -6,6 +8,13 @@ TRUCK_DRIVERS = [
 
 
 class Driver:
+    
+    _licenses = [
+        'class D',
+        'class E',
+        'HR Heavy rigid',
+        'MC'
+    ]
     
     def __init__(self,name):
         self._name = name       # python convention -> private
@@ -23,6 +32,16 @@ class Driver:
             raise ValueError(f"{name} is not a truck driver")
         self._name = name
     
+    
+    @staticmethod           # not takes self a first argument (do not operate on object) - normal function which is attached to class
+    def random_driver():    # static methods are used to implement factory functions -> generates instance of the class, objects
+        return Driver(random.choice(TRUCK_DRIVERS))
+        
+    
+    @classmethod
+    def licences(cls):      # cls refers to class
+        return cls._licenses
+    
 
 if __name__ == "__main__":
     dd = Driver('Rick Falugia')
@@ -31,8 +50,11 @@ if __name__ == "__main__":
     # after added property decorator
     print(dd.name)
     
-    # after added setter
-    dd.name = "Ricky Martin"
-    print(dd.name)
+    # after added setter and validation
+    # dd.name = "Ricky Martin"
+    # print(dd.name)
     
+    random_driver = Driver.random_driver()
+    print(f"Randomly generated driver: {random_driver.name}")
     
+    print(Driver.licences())
