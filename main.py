@@ -39,7 +39,7 @@ class Driver:
         
     
     @classmethod
-    def licences(cls):      # cls refers to class
+    def licences(cls):      # cls refers to class 
         return cls._licenses
     
 
@@ -56,5 +56,15 @@ if __name__ == "__main__":
     
     random_driver = Driver.random_driver()
     print(f"Randomly generated driver: {random_driver.name}")
+    
+    print(Driver.licences())
+
+    dw = Driver('Danzel Want')
+    dw._licenses = ['MC']
+    print(dw.licences()) # returns the same value because it refers to class, not object
+    
+    dw.__class__._licenses = ['MC']
+    print(dw.licences()) # changes the list in the driver class, not the property for dw object!
+    
     
     print(Driver.licences())
